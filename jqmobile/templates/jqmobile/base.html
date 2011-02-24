@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	{% block html-head %}
+		<title>{% block page-title %}{% if title %}{{ title }}{% endif %}{% endblock %}</title>
+		{% block styles %}
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a2/jquery.mobile-1.0a2.min.css" />
+		{% endblock %}
+		{% block scripts %}
+		<script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.0a2/jquery.mobile-1.0a2.min.js"></script>
+		{% endblock %}
+	{% endblock html-head %}
+	</head>
+	<body{% block body-attributes %}{% endblock %}>
+	{% block body %}
+	{% if page %}
+	{% if request and request.is_ajax %}
+	{% include "jqmobile/page.html" %}
+	{% else %}
+	{{ page.render|safe }}
+	{% endif %}
+	{% endif %}
+	{% if pages %}
+	{% for extra in pages %}
+	{{ extra.render|safe }}
+	{% endfor %}
+	{% endif %}
+	{% endblock body %}
+	</body>
+</html>

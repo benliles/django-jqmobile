@@ -1,0 +1,1 @@
+from jqmobile import settings

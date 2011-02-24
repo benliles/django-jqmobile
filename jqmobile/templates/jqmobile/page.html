@@ -1,0 +1,30 @@
+<div data-role="page"{% block page-id %}{% if jqmobile_embed %} id="{{ page.hash }}"{% endif %}{% endblock %}{% block page-attributes %}{% if page.attributes %} {{ page.attributes|safe }}{% endif %}{% endblock %}>
+{% block page %}
+	{% block header-wrapper %}
+	<div data-role="header"{% block header-attributes %}{% if page.header_attributes %} {{ page.header_attributes|safe }}{% endif %}{% endblock %}>
+	{% block header %}
+		{% if page.header %}
+		{{ page.header|safe }}
+		{% else %}
+		<h1>{% block page-header-title %}{{ page.title|truncatewords:4 }}{% endblock %}</h1>
+		{% endif %}
+	{% endblock %}
+	</div>
+	{% endblock header-wrapper %}
+	{% block content-wrapper %}
+	<div data-role="content"{% block content-attributes %}{% if page.content_attributes %} {{ page.content_attributes|safe }}{% endif %}{% endblock %}>
+	{% block content %}
+		{{ page.body|safe }}
+	{% endblock %}
+	</div>
+	{% endblock content-wrapper %}
+	{% block footer-wrapper %}
+	{% if page.footer %}
+	<div data-role="footer"{% block footer-attributes %}{% if page.footer_attributes %} {{ page.footer_attributes|safe }}{% endif %}{% endblock %}>
+	{% block footer %}{{ page.footer|safe }}{% endblock %}
+	</div>
+	{% endif %}
+	{% endblock footer-wrapper %}
+{% endblock page %}
+</div>
+{% block extra %}{% endblock %}
